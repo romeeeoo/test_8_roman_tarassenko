@@ -1,9 +1,10 @@
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
-from django.views.generic import TemplateView, CreateView, DetailView
+from django.urls import reverse
+from django.views.generic import TemplateView, CreateView, DetailView, UpdateView
 
-from accounts.forms import LoginForm, MyUserCreationForm
+from accounts.forms import LoginForm, MyUserCreationForm, UserChangeForm
 
 
 # Create your views here.
@@ -60,6 +61,16 @@ class ProfileView(LoginRequiredMixin, DetailView):
         reviews = self.object.reviews.all()
         kwargs["reviews"] = reviews
         return super().get_context_data(**kwargs)
+
+
+class UserChangeView(UpdateView):
+    model = get_user_model()
+    form_class = UserChangeForm
+    template_name = "user_change.html"
+    context_object_name = "user_obj"
+
+    def get_success_url(self):
+        return reverse("profile", kwargs={"pk": self.object.pk})
 
 
 

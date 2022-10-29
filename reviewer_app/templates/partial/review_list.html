@@ -1,4 +1,6 @@
 {% for review in reviews %}
-    <p><b>{{ review.author.username }}</b> {{ review.author.email }} </p>
+    <p>
+        <a href="{% url "profile" review.author.pk %}">{{ review.author.username }}: {{ review.author.email }}</a>
+    </p>
     <p>rate: {{ review.rate }}: {{ review.review_text }}</p>
 {% endfor %}

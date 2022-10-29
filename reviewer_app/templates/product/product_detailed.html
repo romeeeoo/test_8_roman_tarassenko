@@ -14,13 +14,15 @@
         </div>
     </div>
     {% for review in product.reviews.all %}
-        <p><b>{{ review.author.username }}</b> {{ review.author.email }} </p>
+        <p>
+            <a href="{% url "profile" review.author.pk %}">{{ review.author.username }}: {{ review.author.email }}</a>
+        </p>
         <p>rate: {{ review.rate }}: {{ review.review_text }}</p>
     {% endfor %}
     {% if avg_rate %}
         <p>Average rate: {{ avg_rate }}</p>
     {% else %}
-           <p>Average rate:0 </p>
+        <p>Average rate:0 </p>
     {% endif %}
 
     {#    <a href="{% url "product_delete" product.pk %} " class="btn btn-outline-secondary text-uppercase btn-blue mt-5">#}
