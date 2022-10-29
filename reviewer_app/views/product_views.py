@@ -1,7 +1,7 @@
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from reviewer_app.forms import ProductForm, ReviewForm
+from reviewer_app.forms import ProductForm
 from reviewer_app.models import Product, Review
 
 
@@ -14,10 +14,24 @@ class ReviewerIndexView(ListView):
     context_object_name = "products"
 
 
+
+
+
 class ProductDetailView(DetailView):
     template_name = "product/product_detailed.html"
     model = Product
     context_object_name = 'product'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        product_reviews = Review.objects.filter(product=self.get_object())
+        if len(product_reviews) != 0:
+            review_sum = 0
+            for i in product_reviews:
+               review_sum += i.rate
+            avg_rate = review_sum/len(product_reviews)
+            context["avg_rate"] = avg_rate
+        return super().get_context_data(**context)
 
 
 class ProductCreateView(CreateView):
