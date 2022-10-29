@@ -30,7 +30,7 @@ class Product(models.Model):
     picture = models.ImageField(
         null=True,
         blank=True,
-        upload_to="Profile picture"
+        upload_to="product-picture"
     )
 
     def __str__(self):

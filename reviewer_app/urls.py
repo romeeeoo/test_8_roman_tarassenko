@@ -1,6 +1,9 @@
 from django.urls import path
 
+from reviewer_app.views import ReviewerIndexView, ProductDetailView
 
 urlpatterns = [
-    # path('', IndexView.as_view(), name='index'),
+    path('', ReviewerIndexView.as_view(), name='index'),
+    path("products/<int:pk>/", ProductDetailView.as_view(), name="product_detailed"),
+
 ]

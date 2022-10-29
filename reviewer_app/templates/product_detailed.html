@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+     <div class="row">
+        <div class="col-md-4 col-sm-12 col-lg-3 product-picture">
+         {% if product.picrture %}
+            <img src="{{ product.picture.url }}" alt="{{ product.name }}">
+          {% endif %}
+        </div>
+        <div class="col-md-4 col-sm-12 col-lg-7">
+            <h1 class="product-title">{{ product.name }}</h1>
+            <p>{{ product.category.name }}</p>
+            <p>{{ product.description }}</p>
+        </div>
+    </div>
+{#    <a href="{% url "product_delete" product.pk %} " class="btn btn-outline-secondary text-uppercase btn-blue mt-5">#}
+{#        delete</a>#}
+{#    <a href="{% url "update_product" product.pk %} " class="btn btn-outline-secondary text-uppercase btn-blue mt-5">#}
+{#        update</a>#}
+{% endblock %}

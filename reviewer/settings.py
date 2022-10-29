@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django_bootstrap5',
+    'django_bootstrap5',
     'accounts',
     'reviewer_app',
 ]
@@ -53,6 +53,18 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'reviewer.urls'
+STATIC_URL = "static/"
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
+
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
+LOGIN_URL = 'login'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_URL = '/uploads/'
+
 
 TEMPLATES = [
     {
@@ -85,17 +97,7 @@ DATABASES = {
 }
 
 #my configurations
-STATIC_URL = "static/"
-STATICFILES_DIRS = [
-    BASE_DIR / "static"
-]
 
-LOGIN_REDIRECT_URL = 'index'
-LOGOUT_REDIRECT_URL = 'index'
-LOGIN_URL = 'login'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
-MEDIA_URL = "/uploads/"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
