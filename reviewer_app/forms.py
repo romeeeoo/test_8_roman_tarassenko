@@ -1,6 +1,6 @@
 from django import forms
 
-from reviewer_app.models import Product
+from reviewer_app.models import Product, Review
 
 
 class ProductForm(forms.ModelForm):
@@ -13,6 +13,16 @@ class ProductForm(forms.ModelForm):
             'category',
         ]
 
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = [
+            'author',
+            'product',
+            'review_text',
+            'rate',
+        ]
 
 
 

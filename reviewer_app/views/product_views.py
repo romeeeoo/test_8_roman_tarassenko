@@ -1,8 +1,8 @@
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from reviewer_app.forms import ProductForm
-from reviewer_app.models import Product
+from reviewer_app.forms import ProductForm, ReviewForm
+from reviewer_app.models import Product, Review
 
 
 # Create your views here.
@@ -18,8 +18,6 @@ class ProductDetailView(DetailView):
     template_name = "product/product_detailed.html"
     model = Product
     context_object_name = 'product'
-
-
 
 
 class ProductCreateView(CreateView):
@@ -44,6 +42,7 @@ class ProductDeleteView(DeleteView):
     template_name = "product/product_confirm_delete.html"
     model = Product
     success_url = reverse_lazy("index")
+
 
 
 
