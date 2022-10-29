@@ -1,32 +1,22 @@
 [
 {
   "model": "reviewer_app.product",
-  "pk": 1,
-  "fields": {
-    "name": "Mini hand squirrel",
-    "category": "TS",
-    "description": "Why? The better question may be: Why not? These vinyl squirrel finger covers are the 2.0 version of the sock puppets we all grew up loving.",
-    "picture": "Profile picture/Mcphee-Archie-Handi-Squirrel_ecomm_via-amazon.com_.jpg"
-  }
-},
-{
-  "model": "reviewer_app.product",
   "pk": 2,
   "fields": {
     "name": "Baguette pillow",
-    "category": "HM",
+    "category": "FD",
     "description": "f you love a good theme, get this baguette pillow to match your new baguette slippers! At 40 inches long (the size of a preschooler!), it’s not a subtle decor item, but reviewers say it’s surprisingly comfy.",
-    "picture": ""
+    "picture": "product-picture/40-in-3D-Simulation-Bread-Shape-Pillow_ecomm_via-amazon.com_.jpg"
   }
 },
 {
   "model": "reviewer_app.review",
-  "pk": 1,
+  "pk": 6,
   "fields": {
-    "author": 2,
-    "product": 1,
-    "review_text": "very good",
-    "rate": 5
+    "author": 1,
+    "product": 2,
+    "review_text": "fff",
+    "rate": 2
   }
 }
 ]

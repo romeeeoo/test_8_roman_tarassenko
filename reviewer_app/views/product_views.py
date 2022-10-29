@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -31,7 +32,7 @@ class ProductDetailView(DetailView):
         return super().get_context_data(**context)
 
 
-class ProductCreateView(CreateView):
+class ProductCreateView(UserPassesTestMixin, CreateView):
     template_name = "product/add_product.html"
     model = Product
     form_class = ProductForm
@@ -39,8 +40,11 @@ class ProductCreateView(CreateView):
     def get_success_url(self):
         return reverse("product_detailed", kwargs={"pk": self.object.pk})
 
+    def test_func(self):
+        return self.request.user.has_perm('review_app.add_product')
 
-class ProductUpdateView(UpdateView):
+
+class ProductUpdateView(UserPassesTestMixin, UpdateView):
     template_name = "product/update_product.html"
     model = Product
     form_class = ProductForm
@@ -48,11 +52,17 @@ class ProductUpdateView(UpdateView):
     def get_success_url(self):
         return reverse("product_detailed", kwargs={"pk": self.object.pk})
 
+    def test_func(self):
+        return self.request.user.has_perm('review_app.change_product')
 
-class ProductDeleteView(DeleteView):
+
+class ProductDeleteView(UserPassesTestMixin, DeleteView):
     template_name = "product/product_confirm_delete.html"
     model = Product
     success_url = reverse_lazy("index")
+
+    def test_func(self):
+        return self.request.user.has_perm('review_app.delete_product')
 
 
 

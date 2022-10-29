@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate, login, logout, get_user_model
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import UserPassesTestMixin
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views.generic import TemplateView, CreateView, DetailView, UpdateView
@@ -52,7 +52,7 @@ class RegisterView(CreateView):
         return self.render_to_response(context)
 
 
-class ProfileView(LoginRequiredMixin, DetailView):
+class ProfileView(DetailView):
     model = get_user_model()
     template_name = "user_detail.html"
     context_object_name = "user_obj"
@@ -63,7 +63,7 @@ class ProfileView(LoginRequiredMixin, DetailView):
         return super().get_context_data(**kwargs)
 
 
-class UserChangeView(UpdateView):
+class UserChangeView(UserPassesTestMixin, UpdateView):
     model = get_user_model()
     form_class = UserChangeForm
     template_name = "user_change.html"
@@ -72,7 +72,8 @@ class UserChangeView(UpdateView):
     def get_success_url(self):
         return reverse("profile", kwargs={"pk": self.object.pk})
 
+    # def has_permission(self):
+    #     return super().has_permission() or self.get_object() == self.request.user
 
-
-
-
+    def test_func(self):
+        return self.get_object() == self.request.user

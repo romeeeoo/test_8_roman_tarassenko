@@ -44,3 +44,4 @@ class UserChangeForm(forms.ModelForm):
             "last_name": "Your last name",
             "email": "Email"
         }
+
