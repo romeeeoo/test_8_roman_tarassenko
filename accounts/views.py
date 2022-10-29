@@ -58,8 +58,7 @@ class ProfileView(LoginRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         reviews = self.object.reviews.all()
-        print(reviews)
-        kwargs["articles"] = reviews
+        kwargs["reviews"] = reviews
         return super().get_context_data(**kwargs)
 
 
