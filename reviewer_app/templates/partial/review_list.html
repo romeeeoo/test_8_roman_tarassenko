@@ -1,0 +1,4 @@
+{% for review in reviews %}
+    <p><b>{{ review.author.username }}</b> {{ review.author.email }} </p>
+    <p>rate: {{ review.rate }}: {{ review.review_text }}</p>
+{% endfor %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Пользователь{% endblock %}
+
+
+{% block menu %}
+{#    <li><a href="{% url '#' user_obj.pk %}">Edit profile</a></li>#}
+{#    <li><a href="#">Change Password</a></li>#}
+{% endblock %}
+
+
+{% block content %}
+
+    <h1>User profile {{ user_obj.get_full_name|default:user_obj.username }}</h1>
+    <p>User: {{ user_obj.username }}</p>
+    <p>Name: {{ user_obj.first_name }}</p>
+    <p>Last name: {{ user_obj.last_name }}</p>
+    <p>email: {{ user_obj.email }}</p>
+
+    <h2 class="text-center clear">You left following reviews:</h2>
+    {% include 'partial/review_list.html' %}
+
+{% endblock %}

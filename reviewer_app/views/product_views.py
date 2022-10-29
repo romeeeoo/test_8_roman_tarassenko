@@ -14,9 +14,6 @@ class ReviewerIndexView(ListView):
     context_object_name = "products"
 
 
-
-
-
 class ProductDetailView(DetailView):
     template_name = "product/product_detailed.html"
     model = Product
